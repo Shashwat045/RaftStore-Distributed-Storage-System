@@ -1,30 +1,39 @@
-# RaftStore: Distributed Fault-Tolerant Storage
+# RaftStore — Distributed Fault-Tolerant Storage System
 
-A high-performance, distributed file storage system built on the Raft consensus algorithm. RaftStore provides a unified view of your files while replicating data across multiple independent nodes to ensure high availability and data integrity.
+A decentralized, fault-tolerant distributed storage system implementing the **Raft consensus algorithm** for leader election, log replication, and real-time synchronization across multiple nodes.
 
 ## Features
-- **Strong Consistency**: Uses the Raft consensus algorithm for all metadata operations.
-- **Data Replication**: Automatically replicates files across the cluster.
-- **Fault Tolerance**: Maintains availability even if nodes fail.
-- **Version Control**: Built-in support for file versioning and rollbacks.
-- **Distributed Architecture**: True peer-to-peer system with no single point of failure.
 
-## Quick Start
+- 🗳️ Leader election and log replication via Raft consensus
+- 🔄 Real-time synchronization across distributed nodes
+- 📁 Distributed file upload, deletion, rollback, and recovery
+- 🔗 Replicated metadata consistency with automatic node sync
+- 📊 Monitoring dashboard with real-time cluster event tracking
+- 🔐 JWT-based authentication
+- 🖥️ Multi-node deployment support (localhost)
 
-1. **Install Dependencies**:
-   ```bash
-   pip install fastapi uvicorn httpx python-multipart pyjwt
-   ```
+## Tech Stack
 
-2. **Start the Cluster**:
-   ```powershell
-   ./run_nodes.ps1
-   ```
-
-3. **Access the Dashboard**:
-   Open [http://localhost:8001](http://localhost:8001) in your browser.
+- **Backend:** Python, FastAPI, Uvicorn
+- **Consensus:** Raft Algorithm (custom implementation)
+- **Auth:** JWT
+- **Frontend:** HTML, CSS, JavaScript
 
 ## Architecture
-RaftStore nodes communicate via a custom implementation of the Raft protocol. Each node maintains a local state machine that is kept in sync with the rest of the cluster. When a file is uploaded, the leader node proposes a consensus entry, and the file is replicated to followers once a majority of nodes have acknowledged the request.
 
-For detailed deployment instructions, see [DEPLOYMENT.md](DEPLOYMENT.md).
+RaftStore runs multiple nodes that elect a leader using the Raft protocol. The leader coordinates writes and replicates logs to follower nodes, ensuring consistency even if nodes fail or disconnect. See `DEPLOYMENT.md` for full setup details.
+
+## Running Locally
+
+```bash
+git clone https://github.com/Shashwat045/RaftStore-Distributed-Storage-System.git
+cd RaftStore-Distributed-Storage-System
+pip install -r requirements.txt
+uvicorn main:app --reload
+```
+
+See `DEPLOYMENT.md` for multi-node cluster setup instructions.
+
+## Author
+
+**Shashwat Yadav** — [GitHub](https://github.com/Shashwat045)
